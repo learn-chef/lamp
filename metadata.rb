@@ -9,3 +9,6 @@ issues_url 'https://github.com/learn-chef/lamp/issues' if respond_to?(:issues_ur
 source_url 'https://github.com/learn-chef/lamp' if respond_to?(:source_url)
 
 depends 'httpd', '~> 0.4'
+depends 'mysql', '~> 8.0'
+depends 'mysql2_chef_gem', '~> 1.1'
+depends 'database', '~> 6.1'

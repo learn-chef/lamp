@@ -3,7 +3,11 @@
 # Recipe:: web
 #
 # Copyright:: 2017, The Authors, All Rights Reserved.
-document_root = node['lamp']['web']['document_root']
+
+# Create the document root directory.
+directory node['lamp']['web']['document_root'] do
+  recursive true
+end
 
 # Add the site configuration.
 httpd_config 'default' do
@@ -17,13 +21,13 @@ httpd_service 'default' do
   subscribes :restart, 'httpd_config[default]'
 end
 
-# Create the document root directory.
-directory document_root do
-  recursive true
+# Install the mod_php5 Apache module.
+httpd_module 'php5' do
+  instance 'default'
 end
 
-# Write the home page.
-file ::File.join(document_root, 'index.html') do
-  content '<html>This is a placeholder</html>'
-  action :create_if_missing
+# Install php5-mysql.
+package 'php5-mysql' do
+  action :install
+  notifies :restart, 'httpd_service[default]'
 end

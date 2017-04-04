@@ -5,17 +5,17 @@
 # The Inspec reference, with examples and extensive documentation, can be
 # found at http://inspec.io/docs/reference/resources/
 
-describe package 'httpd' do
+describe package 'apache2' do
   it { should be_installed }
 end
 
-describe service 'httpd-default' do
+describe service 'apache2-default' do
   it { should be_enabled }
   it { should be_running }
 end
 
-describe command 'curl -I localhost' do
-  its('stdout') { should match /^HTTP\/1\.1 200 OK/ }
+describe command 'wget -qSO- --spider localhost' do
+  its('stderr') { should match %r{HTTP/1\.1 200 OK} }
 end
 
 describe port 80 do

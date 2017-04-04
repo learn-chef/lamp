@@ -6,7 +6,7 @@
 
 require 'spec_helper'
 
-describe 'lamp::default' do
+describe 'lamp::database' do
   context 'When all attributes are default, on Ubuntu 14.04' do
     let(:chef_run) do
       runner = ChefSpec::ServerRunner.new(platform: 'ubuntu', version: '14.04') do |_node, server|
@@ -14,8 +14,8 @@ describe 'lamp::default' do
           'passwords',
           'mysql' => {
             'id' => 'mysql',
-            'admin_password' => 'fakeadminpassword',
-            'root_password' => 'fakerootpassword'
+            'root_password' => 'fakerootpassword',
+            'admin_password' => 'fakeadminpassword'
           }
         )
       end
