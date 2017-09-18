@@ -15,7 +15,7 @@ describe 'lamp::database' do
           'mysql' => {
             'id' => 'mysql',
             'root_password' => 'fakerootpassword',
-            'admin_password' => 'fakeadminpassword'
+            'admin_password' => 'fakeadminpassword',
           }
         )
       end
